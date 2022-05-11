@@ -1,0 +1,11 @@
+public static void main(String[] args) {
+		
+char [ ] alphsbates = new char[ 26 ] ;
+char al= 'A';
+	
+for(int i = 0 ; i < alphsbates.length ; i++, al++) {
+alphsbates[i] = al;
+}
+  for(int i = 0; i< alphsbates.length ; i++) {
+System.out.println(alphsbates[i]+ "="+(int)alphsbates[i]);
+}}}
