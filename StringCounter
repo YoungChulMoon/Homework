@@ -1,0 +1,85 @@
+import java.util.Iterator;
+
+public class StringCounter {
+	
+	
+	
+	final int limitString = 40;
+	
+	String[][] storageString = new String[4][40];
+	
+	
+	int totalStrCount;
+	int countInt = 0;
+	int lowStringInt = 0;
+	int upperStringInt = 0;
+	int otherInt = 0;
+	
+	
+	public StringCounter()
+	{
+		ReadString();
+	}
+	
+	public void ReadString()
+	{
+		byte[] buf = new byte[40];
+		try {
+			System.out.print("문자열을 입력하세요 : ");
+			System.in.read(buf);
+			String _tmp = new String(buf);
+			Counter(_tmp);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void Counter(String str)
+	{
+		for (int i = 0; i < str.length(); i++) {
+			Character c = new Character(str.charAt(i));
+			int ascii = c.hashCode();
+			
+			if (ascii >= 48 && ascii <= 57) {
+				storageString[0][countInt] = c.toString();
+				countInt++;
+				continue;
+			}
+			if (ascii >= 65 && ascii <= 90) {
+				storageString[1][upperStringInt] = c.toString();
+				upperStringInt++;
+				continue;
+			}
+			if (ascii >= 97 && ascii <= 122) {
+				storageString[2][lowStringInt] = c.toString();
+				lowStringInt++;
+				continue;
+			}
+			
+			storageString[3][otherInt] = c.toString();
+			otherInt++;			
+		}
+		printArray();
+	}
+	
+	private void printArray()
+	{
+		for (int i = 0; i < storageString.length; i++) {
+			String _tmp = new String();
+			if(i == 3) {break;}
+			for (int j = 0; j < storageString[i].length; j++) {
+				String _inTmp = storageString[i][j];
+				_tmp += _inTmp != null && !_inTmp.equals("") ? _inTmp +"," : ""; 
+			}
+			System.out.println(_tmp);
+		}
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		new StringCounter();
+		
+	}
+
+}
